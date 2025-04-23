@@ -1,0 +1,240 @@
+What is the URL and license information for the CellularComponent mitochondrial matrix?;MATCH (c:CellularComponent {name: "mitochondrial matrix"}) RETURN c.url, c.license
+What is the URL, license, and source of the side effect identified 'C0270075'?;MATCH (se:SideEffect {identifier: 'C0270075'}) RETURN se.url, se.license, se.source
+What are the names and identifiers of all genes, sorted by their identifier in ascending order?;MATCH (g:Gene) RETURN g.name, g.identifier ORDER BY g.identifier ASC
+List the names and chomosomes of genes sorted by their chromosome number in ascending order.;MATCH (g:Gene) RETURN g.name, g.chromosome ORDER BY g.chromosome ASC
+Show the names and sources of genes sorted by their name alphabetically in ascending order.;MATCH (g:Gene) RETURN g.name, g.source ORDER BY g.name ASC
+How many genes whose name starts with 'BRCA'?;MATCH (g:Gene) WHERE g.name STARTS WITH 'BRCA' RETURN COUNT(g)
+Which genes have descriptions that contain the term 'tumor suppressor'? List their names and descriptions.;MATCH (g:Gene) WHERE g.description CONTAINS 'tumor suppressor' RETURN g.name, g.description
+How many genes with descriptions that end with 'factor'.;MATCH (g:Gene) WHERE g.description ENDS WITH 'factor' RETURN COUNT(g)
+What is the identifier of gene BRCA1?;MATCH (n:Gene {name: 'BRCA1'}) RETURN n.identifier
+What is the identifier of the disease alzheimer's disease?;MATCH (n:Disease) WHERE n.name = "Alzheimer's disease" RETURN n.identifier
+How many sources for all pathways?;MATCH (n:Pathway) RETURN COUNT(n.source)
+Skip the first 10 genes and list 5 gene names.  ;MATCH (n:Gene) RETURN n.name SKIP 10 LIMIT 5
+How many compounds have a non-null inchi property?;MATCH (n:Compound) WHERE n.inchi IS NOT NULL RETURN COUNT(n)
+Can you provide the identifiers for the symptoms headache?;MATCH (n:Symptom) WHERE n.name = 'Headache' RETURN n.identifier
+Which molecular functions are in alphabetical order by name? List the names of molecular functions.;MATCH (n:MolecularFunction) RETURN n.name ORDER BY n.name ASC
+How many pathways in the database have a non-empty source property?;MATCH (n:Pathway) WHERE n.source IS NOT NULL RETURN COUNT(n)
+What is the total number of diseases with the license 'CC BY 3.0'?;MATCH (n:Disease) WHERE n.license = 'CC BY 3.0' RETURN COUNT(n)
+Fetch symptoms  ordered by their names in ascending order!;MATCH (n:Symptom) RETURN n.name ORDER BY n.name ASC
+What is the total number of compounds with a defined identifier property?;MATCH (n:Compound) WHERE n.identifier IS NOT NULL RETURN COUNT(n.identifier)
+What is the minimum identifier property value among all genes?;MATCH (n:Gene) RETURN MIN(n.identifier)
+What is the maximum identifier property value among all genes?;MATCH (n:Gene) RETURN MAX(n.identifier)
+Can you list the licenses for diseases and the count of diseases under each license?;MATCH (n:Disease) WITH n.license AS license, COUNT(n) AS count RETURN license, count
+Group genes by their chromosome and provide the chromosome name along with the count of genes for each group.;MATCH (n:Gene) WITH n.chromosome AS chromosome, COUNT(n) AS count RETURN chromosome, count
+Can you list the sources of genes and the number of gene identifiers associated with each source?;MATCH (n:Gene) WITH n.source AS source, COUNT(n.identifier) AS count_identifier RETURN source, count_identifier
+Find the Gene where the description contains 'kinas', can you provide the names of genes?;MATCH (n:Gene) WHERE n.description CONTAINS 'kinas' RETURN n.name
+How many pathways in the database have names that begin with 'Ox'?;MATCH (n:Pathway) WHERE n.name STARTS WITH 'Ox' RETURN COUNT(n)
+Fetch all Disease nodes where their name ends with 'itis'. Give the names of diseases.;MATCH (n:Disease) WHERE n.name ENDS WITH 'itis' RETURN n.name
+Can you list the identifiers for molecular functions with names that begin with 'type' and end with 'binding'?;MATCH (n:MolecularFunction) WHERE n.name STARTS WITH 'type' AND n.name ENDS WITH 'binding' RETURN n.identifier
+How many symptoms where the source contains 'clinical'?;MATCH (n:Symptom) WHERE n.source CONTAINS 'clinical' RETURN COUNT(n)
+What pharmacologic class names are associated with a class_type that begins with 'Mechanism'?;MATCH (n:PharmacologicClass) WHERE n.class_type STARTS WITH 'Mechanism' RETURN n.name
+How many genes where their identifier is larger than 1000 and lower than 2000?;MATCH (n:Gene) WHERE n.identifier > 1000 AND n.identifier < 2000 RETURN COUNT(n)
+Retrieve the names of symptoms where the name contains 'Fever'.;MATCH (n:Symptom) WHERE n.name CONTAINS 'Fever' RETURN n.name
+How many molecular functions that have the url recorded!;MATCH (n:MolecularFunction) WHERE EXISTS(n.url) RETURN COUNT(n)
+Find identifiers of  anatomies Lung.;MATCH (n:Anatomy {name: 'lung'}) RETURN n.identifier
+Find all diseases whose names contain the term 'lung'. List the names of diseases.;MATCH (d:Disease) WHERE d.name CONTAINS 'lung' RETURN d.name
+Retrieve the names of diseases sorted alphabetically.;MATCH (d:Disease) RETURN d.name ORDER BY d.name ASC
+Which symptoms whose name containing the term 'Pain'? List the names of symptoms. ;MATCH (s:Symptom) WHERE s.name CONTAINS 'Pain' RETURN s.name
+List the names of cellular components whose names start with 'cyto', sorted alphabetically.;MATCH (cc:CellularComponent) WHERE cc.name STARTS WITH 'cyto' RETURN cc.name ORDER BY cc.name ASC
+Find all compounds whose names end with 'zole'. Give the names of compounds.;MATCH (c:Compound) WHERE c.name ENDS WITH 'zole' RETURN c.name
+List the names of pathways with 'cell' in their names.;MATCH (pw:Pathway) WHERE pw.name =~ '.*cell.*' RETURN pw.name
+Which compounds do not have a recorded license?;MATCH (c:Compound) WHERE NOT EXISTS(c.license) RETURN c.name
+Find all anatomies whose names start with 'he'. List the names of anatomies. ;MATCH (a:Anatomy) WHERE a.name STARTS WITH 'he' RETURN a.name
+Retrieve all details about the gene BRCA1.;MATCH (g:Gene {name: 'BRCA1'}) RETURN g
+Find the name and license of the pathway apoptosis.;MATCH (p:Pathway {name: 'Apoptosis'}) RETURN p.name, p.license
+Get the URL of the disease Gestational diabetes.;MATCH (d:Disease {name: 'gestational diabetes'}) RETURN d.url
+What is the source of the compound trifluridine?;MATCH (c:Compound {name: 'Trifluridine'}) RETURN c.source
+List the identifiers of the molecular function ATPase Inhibitor Activity.;MATCH (mf:MolecularFunction {name: 'ATPase inhibitor activity'}) RETURN mf.identifier
+Find the license and source of the side effect nausea.;MATCH (se:SideEffect {name: 'Nausea'}) RETURN se.license, se.source
+What is the identifier of the cellular component Chromatoid body?;MATCH (cc:CellularComponent {name: 'chromatoid body'}) RETURN cc.identifier
+Retrieve the mesh ID for the anatomy Heart.;MATCH (a:Anatomy {name: 'heart'}) RETURN a.mesh_id
+Get the license and class type for the pharmacologic class neuraminidase inhibitors.;MATCH (pc:PharmacologicClass {name: 'Neuraminidase Inhibitors'}) RETURN pc.license, pc.class_type
+Retrieval the node of symptom named as fatigue.;MATCH (s:Symptom {name: 'Fatigue'}) RETURN s
+Retrieve the URL for the biological process 'negative regulation of intracellular transport'.;MATCH (bp:BiologicalProcess {name: 'negative regulation of intracellular transport'}) RETURN bp.url
+What is the license and URL of the compound ibuprofen?;MATCH (c:Compound {name: 'Ibuprofen'}) RETURN c.license, c.url
+Find the chromosome and source for the gene TP53.;MATCH (g:Gene {name: 'TP53'}) RETURN g.chromosome, g.source
+List the name and identifier of the disease Pancreatic Cancer.;MATCH (d:Disease {name: 'pancreatic cancer'}) RETURN d.name, d.identifier
+Get the license and URL for the cellular component node of ranvier.;MATCH (cc:CellularComponent {name: 'node of Ranvier'}) RETURN cc.license, cc.url
+What is the source of the pathway metabolism?;MATCH (p:Pathway {name: 'Metabolism'}) RETURN p.source
+What is the description of the gene EGFR?;MATCH (g:Gene {name: 'EGFR'}) RETURN g.description
+List the license and identifier of the anatomy LUNG.;MATCH (a:Anatomy {name: 'lung'}) RETURN a.license, a.identifier
+Find the source and license of the molecular function cadmium ion binding.;MATCH (mf:MolecularFunction {name: 'cadmium ion binding'}) RETURN mf.source, mf.license
+What is the identifier of the biological process mRNA pseudouridine synthesis?;MATCH (bp:BiologicalProcess {name: 'mRNA pseudouridine synthesis'}) RETURN bp.identifier
+What are the names of all molecular functions in the graph?;MATCH (mf:MolecularFunction) RETURN mf.name
+List names and licenses of all pathways.;MATCH (pw:Pathway) RETURN pw.name, pw.license
+Which anatomies have a BTO ID starting with 'BTO:0001'? Give the names and BTO IDs of anatomies. ;MATCH (a:Anatomy) WHERE a.bto_id STARTS WITH 'BTO:0001' RETURN a.name, a.bto_id
+Retrieve the names of pharmacologic classes sorted ascending alphabetically.;MATCH (pc:PharmacologicClass) RETURN pc.name ORDER BY pc.name ASC
+Find diseases containing the term 'syndrome' in their name. Give the names of diseases. ;MATCH (d:Disease) WHERE d.name CONTAINS 'syndrome' RETURN d.name
+How many compounds exist in the graph?;MATCH (c:Compound) RETURN COUNT(c) AS compoundCount
+List the names of all cellular components where the license is not NULL.;MATCH (cc:CellularComponent) WHERE cc.license IS NOT NULL RETURN cc.name
+Retrieve the names of symptoms whose name ends with 'Disorders'.;MATCH (s:Symptom) WHERE s.name ENDS WITH 'Disorders' RETURN s.name
+List the names of all side effects?;MATCH (se:SideEffect) RETURN se.name
+How many genes have identifiers greater than 1000?;MATCH (g:Gene) WHERE g.identifier > 1000 RETURN COUNT(g) AS geneCount
+Retrieve the names of anatomies sorted by their name in descending order.;MATCH (a:Anatomy) RETURN a.name ORDER BY a.name DESC
+How many diseases whose name contains 'cancer' ?;MATCH (d:Disease) WHERE d.name contains 'cancer' RETURN count(d)
+What are the distinct licenses for compounds in the graph?;MATCH (c:Compound) RETURN DISTINCT c.license
+What is the maximum identifier among all side effects?;MATCH (se:SideEffect) RETURN MAX(se.identifier) AS maxIdentifier
+Find all genes described with the term 'oncogene'. Give the names and descriptions of genes. ;MATCH (g:Gene) WHERE g.description CONTAINS 'oncogene' RETURN g.name, g.description
+Retrieve the names of pharmacologic classes with a class type of 'Physiologic Effect'.;MATCH (pc:PharmacologicClass) WHERE pc.class_type = 'Physiologic Effect' RETURN pc.name
+How many diseases are present with non-null URL values?;MATCH (d:Disease) WHERE d.url IS NOT NULL RETURN COUNT(d) AS diseaseCount
+Retrieve all symptoms whose license is not NULL. List the names and licenses of symptoms.;MATCH (s:Symptom) WHERE s.license IS NOT NULL RETURN s.name, s.license
+Find the minimum identifier value for all anatomy nodes.;MATCH (a:Anatomy) RETURN MIN(a.identifier) AS minIdentifier
+How many side effects have unique sources?;MATCH (se:SideEffect) RETURN COUNT(DISTINCT se.source) AS uniqueSources
+Retrieve the URL and name of all pharmacologic classes.;MATCH (pc:PharmacologicClass) RETURN pc.name, pc.url
+What is the total number of molecular functions?;MATCH (mf:MolecularFunction) RETURN COUNT(mf) AS totalMolecularFunctions
+Find the names of all cellular components where the name contains 'membrane'.;MATCH (cc:CellularComponent) WHERE cc.name CONTAINS 'membrane' RETURN cc.name
+List names and identifiers of all diseases sorted by their identifier in ascending order.;MATCH (d:Disease) RETURN d.name, d.identifier ORDER BY d.identifier ASC
+What is the maximum chromosome number among genes?;MATCH (g:Gene) RETURN MAX(toInteger(g.chromosome)) AS maxChromosome
+Retrieve the name of compounds whose InChI keys are NULL.;MATCH (c:Compound) WHERE c.inchikey IS NULL RETURN c.name
+How many unique licenses exist among all nodes?;MATCH (n) RETURN COUNT(DISTINCT n.license) AS uniqueLicenses
+Retrieve the names of diseases whose names contain both 'disease' and 'chronic'.;MATCH (d:Disease) WHERE d.name CONTAINS 'chronic' AND d.name CONTAINS 'disease' RETURN d.name
+What are the distinct URLs for all side effects?;MATCH (se:SideEffect) RETURN DISTINCT se.url
+List the names of all pharmacologic classes whose class type is 'Mechanism of Action'.;MATCH (pc:PharmacologicClass) WHERE pc.class_type = 'Mechanism of Action' RETURN pc.name
+Retrieve all anatomy nodes whose names start with 'brain'. Give the names of anatomies. ;MATCH (a:Anatomy) WHERE a.name STARTS WITH 'brain' RETURN a.name
+What is the total count of diseases with a NULL identifier?;MATCH (d:Disease) WHERE d.identifier IS NULL RETURN COUNT(d) AS nullIdentifierCount
+Which biological processes does Gene NMU participate in? List names of biological processes.;MATCH (g:Gene {name: 'NMU'})-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) RETURN bp.name
+What diseases are associated with Gene ERBB2? Give names of diseases.;MATCH (g:Gene {name: 'ERBB2'})<-[:ASSOCIATES_DaG]-(d:Disease) RETURN d.name
+Which genes are associated with Disease 'bile duct cancer'? List names of genes.;MATCH (d:Disease {name: 'bile duct cancer'})-[:ASSOCIATES_DaG]->(g:Gene) RETURN g.name
+What symptoms are presented in Disease Crohn's Disease? List names of symptoms.;MATCH (d:Disease {name: "Crohn's disease"})-[:PRESENTS_DpS]->(s:Symptom) RETURN s.name
+What diseases does Compound captopril treat? Give names of diseases.;MATCH (c:Compound {name: 'Captopril'})-[:TREATS_CtD]->(d:Disease) RETURN d.name
+What are the side effects caused by Compound IBUPROFEN? List names of side effects.;MATCH (c:Compound {name: 'Ibuprofen'})-[:CAUSES_CcSE]->(se:SideEffect) RETURN se.name
+Which genes participate in Pathway opsins? Give names of genes.;MATCH (pw:Pathway {name: 'Opsins'})<-[:PARTICIPATES_GpPW]-(g:Gene) RETURN g.name
+Which compounds are included in Pharmacologic Class vinca alkaloids? Give names of compounds.;MATCH (pc:PharmacologicClass {name: 'Vinca Alkaloids'})-[:INCLUDES_PCiC]->(c:Compound) RETURN c.name
+Which genes are expressed in Anatomy 'skin epidermis'? List names of genes.;MATCH (a:Anatomy {name: 'skin epidermis'})-[:EXPRESSES_AeG]->(g:Gene) RETURN g.name
+What diseases present Symptom diarrhea? List names of diseases.;MATCH (s:Symptom {name: 'Diarrhea'})<-[:PRESENTS_DpS]-(d:Disease) RETURN d.name
+What are the names of genes participate in Cellular Component DNA polymerase complex? List names of the genes.;MATCH (cc:CellularComponent {name: 'DNA polymerase complex'})<-[:PARTICIPATES_GpCC]-(g:Gene) RETURN g.name
+What compounds cause Side Effect headache? List names of compounds.;MATCH (se:SideEffect {name: 'Headache'})<-[:CAUSES_CcSE]-(c:Compound) RETURN c.name
+Which diseases are related to Gene BLVRA through the UPREGULATES relationship? Give names of diseases.;MATCH (g:Gene {name: 'BLVRA'})<-[:UPREGULATES_DuG]-(d:Disease) RETURN d.name
+What are the names of genes are linked to the disease alzheimer's disease? Give names of genes in gene's identifier ascending order.;MATCH (d:Disease {name: "Alzheimer's disease"})-[:ASSOCIATES_DaG]->(g:Gene) RETURN g.name ORDER BY g.identifier ASC
+What symptoms are associated with the disease Lung Cancer? List the names of symptoms.;MATCH (d:Disease {name: "lung cancer"})-[:PRESENTS_DpS]->(s:Symptom) RETURN s.name
+List all side effects caused by the compound with the InChI key 'InChIKey=OJFSXZCBGQGRNV-UHFFFAOYSA-N' and list the names, identifiers, and sources of these side effects.;MATCH (c:Compound {inchikey: "InChIKey=OJFSXZCBGQGRNV-UHFFFAOYSA-N"})-[:CAUSES_CcSE]->(se:SideEffect) RETURN se.name, se.identifier, se.source
+What are source, and identifier of the pathway that the gene with identifier 83752 participates in? List first three of each value.;MATCH (g:Gene {identifier: 83752})-[:PARTICIPATES_GpPW]->(p:Pathway) RETURN p.source, p.identifier LIMIT 3
+What are the genes expressed in the anatomy Secondary Palate and list the names and sources of these genes? Give the names of genes and sources.;MATCH (a:Anatomy {name: 'secondary palate'})-[:EXPRESSES_AeG]->(g:Gene) RETURN g.name, g.source
+What are the names, sources and licenses of genes expressed in the anatomy Secondary palate?;MATCH (a:Anatomy {name: "secondary palate"})-[:EXPRESSES_AeG]->(g:Gene) RETURN g.name, g.source, g.license
+Which compounds cause side effects nausea and what are their names, inchi and inchikey?;MATCH (s:SideEffect {name: "Nausea"})<-[:CAUSES_CcSE]-(c:Compound) RETURN c.name, c.inchi, c.inchikey
+List all CellularComponents that participated by the gene tp53 and provide their identifiers and sources.;MATCH (g:Gene {name: 'TP53'})-[:PARTICIPATES_GpCC]->(c:CellularComponent) RETURN c.identifier, c.source
+Find CellularComponents that the gene brca1 participates and list the names of cellular components in descending alphabetical order.;MATCH (g:Gene {name: 'BRCA1'})-[:PARTICIPATES_GpCC]->(c:CellularComponent) RETURN c.name ORDER BY c.name DESC
+Which compounds cause the side effect nausea? List their first two names, identifiers and sources.;MATCH (c:Compound)-[:CAUSES_CcSE]->(se:SideEffect {name: 'Nausea'}) RETURN c.name, c.identifier, c.source LIMIT 2
+What are the side effects caused by the compound identified 'DB01148', and list the names licenses and URLs for these side effects?;MATCH (c:Compound {identifier: 'DB01148'})-[:CAUSES_CcSE]->(se:SideEffect) RETURN se.name, se.license, se.url
+Which genes interact with each other, where the genes are different from each other? List the names of genes, names of interacted genes.;MATCH (g1:Gene)-[:INTERACTS_GiG]->(g2:Gene) WHERE g1.name <> g2.name RETURN g1.name, g2.name
+Which genes participate in a molecular function but do not have a description? List the unified names of genes.;MATCH (g:Gene)-[:PARTICIPATES_GpMF]->(:MolecularFunction) WHERE g.description IS NULL RETURN DISTINCT g.name
+What are the unified names of genes that are located on chromosome '3' and are regulated by other genes?;MATCH (g:Gene)-[:REGULATES_GrG]->(target:Gene) WHERE target.chromosome = '3' RETURN DISTINCT target.name
+List the genes with the lowest identifiers that participate in a BiologicalProcess named Negative regulation of lipid metabolic process. Give the names of genes.;MATCH (g:Gene)-[:PARTICIPATES_GpBP]->(:BiologicalProcess {name: "negative regulation of lipid metabolic process"}) RETURN g.identifier ORDER BY g.identifier ASC
+What are the distinct names and identifiers of genes with source 'Entrez Gene' that are involved in at least one Pathway?;MATCH (g:Gene)-[:PARTICIPATES_GpPW]->(:Pathway) WHERE g.source = 'Entrez Gene' RETURN DISTINCT g.name, g.identifier
+Which genes are expressed by anatomy Secondary Palate, return the names of genes in ascending alphabetical order of genes name?;MATCH (a:Anatomy)-[:EXPRESSES_AeG]->(g:Gene) WHERE a.name = "secondary palate" RETURN g.name ORDER BY g.name ASC
+List genes whose description starts with 'PTPRF' and are associated with any disease. List their names and descriptions.;MATCH (g:Gene)<-[:ASSOCIATES_DaG]-(:Disease) WHERE g.description STARTS WITH 'PTPRF' RETURN g.name, g.description
+Find biological processes that genes whose name contains 'KDM' participates. Give names of biological processes.;MATCH (g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) WHERE g.name CONTAINS 'KDM' RETURN bp.name
+How many specific cellular components that genes have a description that starts with 'regulator' participates in?;MATCH (g:Gene)-[:PARTICIPATES_GpCC]->(cc:CellularComponent) WHERE g.description STARTS WITH 'regulator' RETURN COUNT(DISTINCT(cc))
+Find the shortest path between two interacting Genes, named as TP53 and BRCA1 respectively, and retrieve all nodes and relationships along this path.;MATCH p = shortestPath((g1:Gene)-[*]-(g2:Gene)) WHERE g1.name = "TP53" AND g2.name = "BRCA1" RETURN p
+Find the shortest path between the Gene BRCA2 and Biological Process (dna repair) it participates in, showing all intermediary nodes and relationships.;MATCH p = shortestPath((g:Gene)-[*]-(bp:BiologicalProcess)) WHERE g.name = "BRCA2" AND bp.name = "DNA repair" RETURN p
+Find the shortest path between Gene IQGAP3 and the Anatomy Atrioventricular Node that expresses it, including all intermediary nodes and relationships.;MATCH p = shortestPath((g:Gene)-[*]-(a:Anatomy)) WHERE g.name = "IQGAP3" AND a.name = "atrioventricular node" RETURN p
+How many distinct anatomies up reguate genes?;MATCH (n:Anatomy)-[r:UPREGULATES_AuG]->(:Gene) RETURN COUNT(DISTINCT(n))
+How many different binds relationship between compounds and genes?;MATCH (:Compound)-[r:BINDS_CbG]->(:Gene) RETURN COUNT(DISTINCT(r))
+What is the most frequent name among anatomy nodes?;MATCH (n:Anatomy) WITH n.name AS name, COUNT(n) AS count ORDER BY count DESC LIMIT 1 RETURN name AS mode
+How many compounds are licensed under 'CC BY-NC 4.0' and meet the condition of either being sourced from 'DrugBank' or having an inchi value different from 'XYZ123'?;MATCH (n:Compound) WHERE n.license = 'CC BY-NC 4.0' AND (n.source = 'DrugBank' OR NOT n.inchi = 'XYZ123') RETURN COUNT(n)
+For each disease, does its name include the word 'cancer'? List the disease names and 'Yes' or 'No' for each.;MATCH (n:Disease) RETURN n.name, CASE WHEN n.name contains "cancer" THEN 'Yes' ELSE 'No' END
+What are the names of genes on chromosome 'X' that are associated with pathways?;MATCH (n:Gene)-[:PARTICIPATES_GpPW]->(:Pathway) WHERE n.chromosome = 'X' RETURN n.name
+What are the names of genes that participate in the pathway named 'Class B/2 (Secretin family receptors)'? Provide up to 3 distinct gene names.;MATCH (p:Pathway)<-[r:PARTICIPATES_GpPW]-(g:Gene) WHERE p.name = 'Class B/2 (Secretin family receptors)' RETURN DISTINCT g.name LIMIT 3
+How many distinct genes have relationships with other genes?;MATCH (g1:Gene)-[r]-(g2:Gene) RETURN COUNT(DISTINCT(g1))
+How many unique genes are associated with diseases that have 'cancer' or 'Cancer' in their names?;MATCH (d:Disease)-[r:ASSOCIATES_DaG]->(g:Gene) WHERE d.name CONTAINS 'cancer' OR d.name CONTAINS 'Cancer' RETURN COUNT(DISTINCT(g))
+What are the names of compounds that cause the side effect dry throat?;MATCH (se:SideEffect {name: 'Dry throat'})<-[r:CAUSES_CcSE]-(c:Compound) RETURN c.name
+Which compounds with an InChI key ending with 'UHFFFAOYSA-N' downregulate genes located on chromosome '3'? list the names of compounds.;MATCH (c:Compound)-[:DOWNREGULATES_CdG]->(g:Gene {chromosome: '3'}) WHERE c.inchikey ENDS WITH 'UHFFFAOYSA-N' RETURN c.name
+What is the count of distinct gene names that participate in molecular functions?;MATCH (g:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) RETURN COUNT(DISTINCT(g.name))
+Which compound causes the most side effects, and how many side effects does it cause? Give the name of the compound and its count;MATCH (c:Compound)-[:CAUSES_CcSE]->(se:SideEffect) RETURN c.name, COUNT(se) AS sideEffectCount ORDER BY sideEffectCount DESC LIMIT 1
+Classify genes as 'active' if they participate in a biological process and 'inactive' otherwise. List the names of genes and their status;MATCH (g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) RETURN g.name, CASE WHEN bp IS NOT NULL THEN 'active' ELSE 'inactive' END AS status
+Find all pathways associated with genes WNT16. List the names of pathways.;MATCH (g:Gene {name: 'WNT16'})-[:PARTICIPATES_GpPW]->(pw:Pathway) RETURN pw.name
+Count the number of genes associated with 'type 1 diabetes mellitus'.;MATCH (:Disease {name: 'type 1 diabetes mellitus'})-[:ASSOCIATES_DaG]->(g:Gene) RETURN COUNT(distinct(g))
+Which distinct molecular functions do genes on chromosome '5' participate in? List the names of molecular functions.;MATCH (g:Gene {chromosome: '5'})-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) RETURN DISTINCT mf.name
+What are the names of pathways, and how many genes participate in each pathway? List them in descending order of gene count.;MATCH (g:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway) RETURN pw.name, COUNT(g) AS geneCount ORDER BY geneCount DESC
+Which diseases contain 'syndrome' in their name and are associated with at least one gene? List unified names of diseases.;MATCH (d:Disease)-[:ASSOCIATES_DaG]->(g:Gene) WHERE d.name CONTAINS 'syndrome' RETURN DISTINCT(d.name)
+Which compounds either upregulate or downregulate genes on chromosome '2'?;MATCH (c:Compound)-[:UPREGULATES_CuG|:DOWNREGULATES_CdG]->(g:Gene {chromosome: '2'}) RETURN c.name
+What are the names of genes on chromosome 'X' that are linked to pathways? Provide distinct results in alphabetical order.;MATCH (g:Gene {chromosome: 'X'})-[:PARTICIPATES_GpPW]->(:Pathway) RETURN DISTINCT(g.name) ORDER BY g.name ASC
+Which compounds belong to pharmacologic classes of type 'Mechanism of Action'?;MATCH (:PharmacologicClass {class_type: 'Mechanism of Action'})-[:INCLUDES_PCiC]->(c:Compound) RETURN c.name
+What are the names of diseases associated with the largest number of symptoms, sorted in descending order?;MATCH (d:Disease)-[:PRESENTS_DpS]->(s:Symptom) RETURN d.name, COUNT(s) AS symptomCount ORDER BY symptomCount DESC
+Classify genes as 'disease-related' if associated with any disease, or 'non-disease-related' otherwise. List the names of genes and its classification.;MATCH (g:Gene)<-[:ASSOCIATES_DaG]-(d:Disease) RETURN g.name, CASE WHEN d IS NOT NULL THEN 'disease-related' ELSE 'non-disease-related' END AS classification
+Which diseases containing 'cancer' in their names are connected to genes found on chromosome 'X'? Give the distinct names of diseases.;MATCH (d:Disease)-[:ASSOCIATES_DaG]->(g:Gene {chromosome: 'X'}) WHERE d.name CONTAINS 'cancer' RETURN DISTINCT(d.name)
+Count the total number of genes involved in any pathway.;MATCH (g:Gene)-[:PARTICIPATES_GpPW]->(:Pathway) RETURN COUNT(DISTINCT g)
+Find first five paths of length 3 between gene BICD2 and IQGAP3.;MATCH p=(g1:Gene {name: 'BICD2'})-[*3]-(g2:Gene {name: 'IQGAP3'}) RETURN p LIMIT 5
+Retrieve the names of compounds that upregulate genes, sorted in reverse alphabetical order.;MATCH (c:Compound)-[:UPREGULATES_CuG]->(g:Gene) RETURN DISTINCT c.name ORDER BY c.name DESC
+Retrieve the names of diseases along with the symptoms they present, ordered by the names of the diseases.;MATCH (d:Disease)-[:PRESENTS_DpS]->(s:Symptom) RETURN d.name, s.name ORDER BY d.name
+What is the average number of diseases associated with each gene?;MATCH (g:Gene)<-[:ASSOCIATES_DaG]-(d:Disease) WITH g, COUNT(d) AS diseaseCount RETURN AVG(diseaseCount)
+Retrieve the names of diseases and classify them as 'serious' if they are associated with more than 5 genes, or 'mild' otherwise.;MATCH (d:Disease)-[:ASSOCIATES_DaG]->(g:Gene) RETURN d.name, CASE WHEN COUNT(g) > 5 THEN 'serious' ELSE 'mild' END AS classification
+Find paths of up to 2 hops between gene disc1 and any genes located on chromosome '10'.;MATCH p=(g1:Gene {name: 'DISC1'})-[*..2]-(g2:Gene {chromosome: '10'}) RETURN p
+Find all diseases associated with genes whose names are either 'ERBB2', 'PPFIBP2', or 'PTGS2'. Give the names of diseases.;MATCH (d:Disease)-[:ASSOCIATES_DaG]->(g:Gene) WHERE g.name IN ['ERBB2', 'PPFIBP2', 'PTGS2'] RETURN d.name
+Which gene has the highest number of interactions with other genes, and how many interactions does it have? List the name and number of the gene.;MATCH (g:Gene)-[:INTERACTS_GiG]->(other:Gene) RETURN g.name, COUNT(other) AS interactionCount ORDER BY interactionCount DESC LIMIT 1
+Retrieve the names of diseases and classify them as 'severe' if they present more than 3 symptoms, or 'mild' otherwise.;MATCH (d:Disease)-[:PRESENTS_DpS]->(s:Symptom) WITH d, COUNT(s) AS symptomCount RETURN d.name, CASE WHEN symptomCount > 3 THEN 'severe' ELSE 'mild' END AS severity
+How many side effects are associated with the compounds 'Flavoxate' and 'CompoundB'? List the compounds and their side effect counts, sorted from most to least.;MATCH (c:Compound)-[:CAUSES_CcSE]->(se:SideEffect) WHERE c.name IN ['Flavoxate', 'CompoundB'] RETURN c.name, COUNT(se) AS sideEffectCount ORDER BY sideEffectCount DESC
+What are the names of distinct genes connected to gene KDM4A through up to 3 regulatory steps?;MATCH p=(g:Gene {name: 'KDM4A'})<-[:REGULATES_GrG*1..3]-(regulators:Gene) RETURN DISTINCT regulators.name
+List genes with the highest number of interactions with other genes. List the names of genes and their count values.;MATCH (g:Gene)-[:INTERACTS_GiG]->(g2:Gene) RETURN g.name, COUNT(g2) AS interactionCount ORDER BY interactionCount DESC
+Find all pharmacologic classes containing compounds whose names match the regular expression '^Acarbose.*'. Give the names of pharmacologic classes.;MATCH (pc:PharmacologicClass)-[:INCLUDES_PCiC]->(c:Compound) WHERE c.name =~ '^Acarbose.*' RETURN pc.name
+Find the shortest path between the gene TP53 and BRCA1 through regulatory or interaction relationships.;MATCH p=shortestPath((g1:Gene {name: 'TP53'})-[:REGULATES_GrG|INTERACTS_GiG*]-(g2:Gene {name: 'BRCA1'})) RETURN p
+What is the name of the disease with the highest number of distinct symptoms, and how many symptoms does it have?;MATCH (d:Disease)-[:PRESENTS_DpS]->(s:Symptom) RETURN d.name, COUNT(DISTINCT s) AS symptomCount ORDER BY symptomCount DESC LIMIT 1
+Which compounds upregulate or downregulate genes on chromosome 'X'? Provide their distinct names.;MATCH (c:Compound)-[:UPREGULATES_CuG|DOWNREGULATES_CdG]->(g:Gene {chromosome: 'X'}) RETURN DISTINCT c.name
+List diseases associated with the highest number of symptoms, sorted by symptom count. List the names of genes and their counts.;MATCH (d:Disease)-[:PRESENTS_DpS]->(s:Symptom) RETURN d.name, COUNT(s) AS symptomCount ORDER BY symptomCount DESC
+What are the names of pharmacologic classes that include 10 or more compounds, and how many compounds do they include? List them in descending order of compound count.;MATCH (pc:PharmacologicClass)-[:INCLUDES_PCiC]->(c:Compound) WITH pc, COUNT(c) AS compoundCount WHERE compoundCount >= 10 RETURN pc.name, compoundCount ORDER BY compoundCount DESC
+What genes are associated with expression in the liver? Provide their names.;MATCH (a:Anatomy {name: 'liver'})-[:EXPRESSES_AeG]->(g:Gene) RETURN g.name
+How many unique genes are associated with downregulation by the anatomy heart?;MATCH (a:Anatomy {name: 'heart'})-[:DOWNREGULATES_AdG]->(g:Gene) RETURN COUNT(DISTINCT(g))
+What are the names of compounds included in the pharmacologic class increased blood pressure'?;MATCH (pc:PharmacologicClass {name: 'Increased Blood Pressure'})-[:INCLUDES_PCiC]->(c:Compound) RETURN c.name
+List the names of molecular functions associated with the gene tp53.;MATCH (g:Gene {name: 'TP53'})-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) RETURN mf.name
+What pathways involve the gene BRCA1? Provide the names of these pathways.;MATCH (g:Gene {name: 'BRCA1'})-[:PARTICIPATES_GpPW]->(pw:Pathway) RETURN pw.name
+What are the names of symptoms presented by diseases that contain 'diabetes' in their names?;MATCH (d:Disease)-[:PRESENTS_DpS]->(s:Symptom) where d.name contains "diabetes" RETURN s.name
+Which genes does the disease 'breast cancer' upregulate and what molecular functions do these genes participate in? List the names of genes and names of molecular functions.;MATCH (d:Disease {name: "breast cancer"})-[:UPREGULATES_DuG]->(g:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) RETURN g.name , mf.name
+What genes are downregulated by the disease crohn's disease, and in which cellular components are these genes involved? List names of genes and names of cellular components.;MATCH (d:Disease {name: "Crohn's disease"})-[:DOWNREGULATES_DdG]->(g:Gene)-[:PARTICIPATES_GpCC]->(cc:CellularComponent) RETURN g.name , cc.name
+What are the molecular functions of genes upregulated by the compound identified 'DB06589'? List names and identifiers of the molecular functions.;MATCH (c:Compound {identifier: "DB06589"})-[:UPREGULATES_CuG]->(g:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) RETURN mf.name, mf.identifier
+Which diseases are treated by the compound prednisone, and what symptoms do these diseases present?  Can you also provide the names and identifiers of both the diseases and symptoms?;MATCH (c:Compound {name: "Prednisone"})-[:TREATS_CtD]->(d:Disease)-[:PRESENTS_DpS]->(s:Symptom) RETURN d.name, d.identifier, s.name, s.identifier
+What diseases are palliated by the compound identified 'DB00991', and which genes are upregulated in those diseases, and list names and identifiers of diseases and genes?;MATCH (c:Compound {identifier: "DB00991"})-[:PALLIATES_CpD]->(d:Disease)-[:UPREGULATES_DuG]->(g:Gene) RETURN d.name, d.identifier, g.name, g.identifier
+Retrieve all compounds that bind to genes that participate the pathway 'cGMP effects' and provide name, identifier, sources and licenses of compounds.;MATCH (pw:Pathway {name: "cGMP effects"})<-[:PARTICIPATES_GpPW]-(g:Gene)<-[:BINDS_CbG]-(c:Compound) RETURN c.name, c.identifier, c.source, c.license
+Which compounds downregulate genes that participate in the Cellular Component Proteasome Accessory Complex, list names and identifiers of compounds?;MATCH (cc:CellularComponent {name: "proteasome accessory complex"})<-[:PARTICIPATES_GpCC]-(g:Gene)<-[:DOWNREGULATES_CdG]-(c:Compound) RETURN c.name, c.identifier
+Which diseases are treated by compounds that belong to the pharmacologic class nucleic acid synthesis inhibitors? Give the names of diseases in ascending alphabetical order.;MATCH (pc:PharmacologicClass {name: "Nucleic Acid Synthesis Inhibitors"})-[:INCLUDES_PCiC]->(c:Compound)-[:TREATS_CtD]->(d:Disease) RETURN d.name ORDER BY d.name ASC
+What are the side effects caused by compounds in the pharmacologic class iodine? Give the names of side effects.;MATCH (pc:PharmacologicClass {name: "Iodine"})-[:INCLUDES_PCiC]->(c:Compound)-[:CAUSES_CcSE]->(se:SideEffect) RETURN se.name
+What are the cellular components associated with genes expressed in the anatomy Lung? List the names of cellular components.;MATCH (a:Anatomy {name: "lung"})-[:EXPRESSES_AeG]->(g:Gene)-[:PARTICIPATES_GpCC]->(cc:CellularComponent) RETURN cc.name
+Which biological processes involve genes expressed in the anatomy Pancreas? List the names of biological processes.;MATCH (a:Anatomy {name: "pancreas"})-[:EXPRESSES_AeG]->(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) RETURN bp.name
+Find the CellularComponents participated by genes that are up regulated by the disease crohn's disease. Include names, sources and licenses of the cellular components.;MATCH (d1:Disease{name: "Crohn's disease"})-[:UPREGULATES_DuG]->(g:Gene)-[:PARTICIPATES_GpCC]->(c:CellularComponent) RETURN c.name, c.source, c.license
+Find names of the Genes that interact with other Genes and also participate in the Pathway named as TRP channels.;MATCH (g:Gene)-[:INTERACTS_GiG]->(g2:Gene), (g)-[:PARTICIPATES_GpPW]->(p:Pathway {name: "TRP channels"}) RETURN g.name
+Which Anatomies that both downregulate and upregulate Genes? List unified names of anatomies.;MATCH (a:Anatomy)-[:DOWNREGULATES_AdG]->(g1:Gene), (a)-[:UPREGULATES_AuG]->(g2:Gene) RETURN DISTINCT a.name
+Which genes are upregulated by both Disease "Crohn's disease" and Compound 'Trametinib'? List the names of genes.;MATCH (d:Disease {name: "Crohn's disease"})-[:UPREGULATES_DuG]->(g:Gene), (c:Compound {name: 'Trametinib'})-[:UPREGULATES_CuG]->(g) RETURN g.name
+What are the names of molecular functions do both Gene named as RXFP4 and Gene AGTRAP participate in?;MATCH (g1:Gene {name: 'RXFP4'})-[:PARTICIPATES_GpMF]->(mf:MolecularFunction), (g2:Gene {name: 'AGTRAP'})-[:PARTICIPATES_GpMF]->(mf) RETURN mf.name
+Which genes downregulated by the compound flavoxate also participate in a molecular function? Give the distinct names and identifiers of the genes.;MATCH (c:Compound)-[:DOWNREGULATES_CdG]->(g:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) WHERE c.name = 'Flavoxate' RETURN DISTINCT g.name, g.identifier
+Find the unified names of genes that are not expressed by any Anatomy but participate in a CellularComponent.;MATCH (g:Gene)-[:PARTICIPATES_GpCC]->(:CellularComponent) WHERE NOT EXISTS ((:Anatomy)-[:EXPRESSES_AeG]->(g)) RETURN DISTINCT g.name
+Can you count the number of unique diseases that associate with genes and present specific symptoms?;MATCH (n:Disease)-[r1:ASSOCIATES_DaG]->(m1:Gene), (n)-[r2:PRESENTS_DpS]->(m2:Symptom) RETURN COUNT(DISTINCT(n))
+What are the names of compounds involved in both upregulating and binding to genes? Provide up to 5 distinct results.;MATCH (c:Compound)-[r1:UPREGULATES_CuG]->(g1:Gene), (c)-[r2:BINDS_CbG]->(g2:Gene) RETURN DISTINCT(c.name) LIMIT 5
+What are the distinct names of diseases that end with 'cancer', localize to an anatomy, and resemble another disease?;MATCH (d1:Disease)-[:LOCALIZES_DlA]->(a:Anatomy), (d1)-[:RESEMBLES_DrD]->(d2:Disease) WHERE d1.name ENDS WITH "cancer" RETURN DISTINCT(d1.name)
+List the names of pathways associated with genes that participate in the biological process Regulation of cAMP Biosynthetic Process.;MATCH (bp:BiologicalProcess {name: 'regulation of cAMP biosynthetic process'})<-[:PARTICIPATES_GpBP]-(g:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway) RETURN pw.name
+What is the total number of distinct symptoms presented by diseases that localize to the anatomy 'liver'?;MATCH (d:Disease)-[:LOCALIZES_DlA]->(:Anatomy {name: 'liver'})-[:PRESENTS_DpS]->(s:Symptom) RETURN COUNT(DISTINCT s)
+List names of all distinct cellular components that genes associated with alzheimer's disease participate in.;MATCH (d:Disease {name: "Alzheimer's disease"})-[:ASSOCIATES_DaG]->(g:Gene)-[:PARTICIPATES_GpCC]->(cc:CellularComponent) RETURN DISTINCT cc.name
+What is the total number of unique genes associated with both cellular components and molecular functions?;MATCH (g:Gene)-[:PARTICIPATES_GpCC]->(:CellularComponent), (g)-[:PARTICIPATES_GpMF]->(:MolecularFunction) RETURN COUNT(DISTINCT(g.name))
+Which compounds are similar to oxacillin but do not treat any diseases?;MATCH (c:Compound)-[:RESEMBLES_CrC]->(d:Compound {name: "Oxacillin"}) WHERE NOT (c)-[:TREATS_CtD]->(:Disease) RETURN c.name
+Find all anatomical entities expressing genes involved in the biological process Ripoptosome Assembly.;MATCH (bp:BiologicalProcess {name: 'ripoptosome assembly'})<-[:PARTICIPATES_GpBP]-(g:Gene)<-[:EXPRESSES_AeG]-(a:Anatomy) RETURN a.name
+What is the total number of unique pathways genes involved in at least one molecular function participate in?;MATCH (g:Gene)-[:PARTICIPATES_GpMF]->(:MolecularFunction), (g)-[:PARTICIPATES_GpPW]->(pw:Pathway) RETURN COUNT(DISTINCT pw) AS totalPathways
+What are the names of diseases that share symptoms with alzheimer's disease?;MATCH (:Disease {name: "Alzheimer's disease"})-[:PRESENTS_DpS]->(s:Symptom)<-[:PRESENTS_DpS]-(d:Disease) RETURN d.name
+Find all symptoms presented by diseases resembling parkinson's disease. List the names of symptoms.;MATCH (d1:Disease {name: "Parkinson's disease"})-[:RESEMBLES_DrD]->(d2:Disease)-[:PRESENTS_DpS]->(s:Symptom) RETURN s.name
+Which molecular functions are linked to genes associated with diseases? Provide the names of the functions and the number of related diseases, sorted by the smallest disease count.;MATCH (mf:MolecularFunction)<-[:PARTICIPATES_GpMF]-(g:Gene)<-[:ASSOCIATES_DaG]-(d:Disease) RETURN mf.name, COUNT(d) AS diseaseCount ORDER BY diseaseCount ASC
+Which genes participate in cellular components but do not participate in pathways? List distinct names of genes.;MATCH (g:Gene)-[:PARTICIPATES_GpCC]->(:CellularComponent) WHERE NOT (g)-[:PARTICIPATES_GpPW]->(:Pathway) RETURN DISTINCT(g.name)
+Find all cellular components that genes associated with Pancreatic Cancer participate in. List the distinct names of celluar components.;MATCH (d:Disease {name: 'pancreatic cancer'})-[:ASSOCIATES_DaG]->(g:Gene)-[:PARTICIPATES_GpCC]->(cc:CellularComponent) RETURN DISTINCT(cc.name)
+What diseases starting with 'bile' are linked to genes participating in pathways that have 'Pathway' in their names? Provide the disease, gene, and pathway names.;MATCH (d:Disease)-[:ASSOCIATES_DaG]->(g:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway) WHERE d.name STARTS WITH 'bile' AND pw.name CONTAINS 'Pathway' RETURN d.name, g.name, pw.name
+Identify genes that participate in at least one pathway but not in any molecular function. Give the names of genes.;MATCH (g:Gene) WHERE (g)-[:PARTICIPATES_GpPW]->(:Pathway) AND NOT (g)-[:PARTICIPATES_GpMF]->(:MolecularFunction) RETURN g.name
+Which genes located on chromosome 'X' participate in more than 2 distinct biological processes and are associated with pathways related to metabolism? Include their names and the biological process counts.;MATCH (g:Gene {chromosome: 'X'})-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess), (g)-[:PARTICIPATES_GpPW]->(pw:Pathway) WHERE pw.name CONTAINS 'metabolism' WITH g, COUNT(DISTINCT bp) AS bpCount WHERE bpCount > 2 RETURN g.name, bpCount
+Which genes are regulated by genes on chromosome 'Y' and are involved in 2 or more pathways? Provide their names.;MATCH (g:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway), (regulator:Gene {chromosome: 'Y'})-[:REGULATES_GrG]->(g) WITH g, COUNT(DISTINCT pw) AS pathwayCount WHERE pathwayCount >= 2 RETURN g.name
+List all diseases that localize to anatomies with 'neuro' in the name and involve genes with descriptions containing 'axon'.;MATCH (d:Disease)-[:LOCALIZES_DlA]->(a:Anatomy), (d)-[:ASSOCIATES_DaG]->(g:Gene) WHERE a.name CONTAINS 'neuro' AND g.description CONTAINS 'axon' RETURN d.name, a.name, g.name
+Count the total number of unique pathways associated with diseases that downregulate genes.;MATCH (d:Disease)-[:DOWNREGULATES_DdG]->(g:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway) RETURN COUNT(DISTINCT pw) AS totalPathways
+Which genes are involved in Regulatory Region DNA Binding and covary with other genes? List both gene names.;MATCH (mf:MolecularFunction {name: 'regulatory region DNA binding'})<-[:PARTICIPATES_GpMF]-(g1:Gene)-[:COVARIES_GcG]->(g2:Gene) RETURN g1.name, g2.name
+Which genes expressed by the liver are linked to the molecular function d-amino-acid oxidase activity? Provide their names.;MATCH (a:Anatomy {name: 'liver'})-[:EXPRESSES_AeG]->(g:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction {name: 'D-amino-acid oxidase activity'}) RETURN g.name
+What diseases are localized to the heart and have an association with the gene TP53? Provide their names.;MATCH (d:Disease)-[:LOCALIZES_DlA]->(a:Anatomy {name: 'heart'}), (d)-[:ASSOCIATES_DaG]->(g:Gene {name: 'TP53'}) RETURN d.name
+Which genes participating in the developmental biology pathway are affected by downregulation due to crohn's disease? List their names.;MATCH (g:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway {name: 'Developmental Biology'}), (d:Disease {name: "Crohn's disease"})-[:DOWNREGULATES_DdG]->(g) RETURN g.name
+What compounds are linked to treating Pancreatic Cancer and causing the side effect non-cardiac chest pain? Provide their names.;MATCH (c:Compound)-[:TREATS_CtD]->(d:Disease {name: 'pancreatic cancer'}), (c)-[:CAUSES_CcSE]->(se:SideEffect {name: 'Non-cardiac chest pain'}) RETURN c.name
+Which compounds are associated with genes that regulate the gene CSRP1? List their names.;MATCH (c:Compound)-[:BINDS_CbG]->(g1:Gene)-[:REGULATES_GrG]->(g2:Gene {name: 'CSRP1'}) RETURN c.name
+Which pharmacologic classes contain compounds associated with the side effect fungal skin infection? Provide their names.;MATCH (pc:PharmacologicClass)-[:INCLUDES_PCiC]->(c:Compound)-[:CAUSES_CcSE]->(se:SideEffect {name: 'Fungal skin infection'}) RETURN pc.name
+List the names of genes expressed in the brain that have interactions with gene brca1.;MATCH (a:Anatomy {name: 'brain'})-[:EXPRESSES_AeG]->(g1:Gene)-[:INTERACTS_GiG]->(g2:Gene {name: 'BRCA1'}) RETURN g1.name
+Which genes are associated with downregulation in abdominal aortic aneurysm, a disease resembling behcet's disease? List their names.;MATCH (d1:Disease {name: "Behcet's disease"})-[:RESEMBLES_DrD]->(d2:Disease{name: "abdominal aortic aneurysm"})-[:DOWNREGULATES_DdG]->(g:Gene) RETURN g.name
+List the pharmacologic classes that include compounds that bind to genes participate the biological process Head Development, provide the names and identifiers of the pharmacologic classes.;MATCH (bp:BiologicalProcess {name: "head development"})<-[:PARTICIPATES_GpBP]-(g:Gene)<-[:BINDS_CbG]-(c:Compound)<-[:INCLUDES_PCiC]-(pc:PharmacologicClass) RETURN pc.name, pc.identifier
+Find all pharmacologic classes that include compounds which upregulate genes participating in the pathway identified 'PC7_4269'. Give the names of Pharmacologic Classes. List the names of pharmacologic classes.;MATCH (p:Pathway {identifier: 'PC7_4269'})<-[:PARTICIPATES_GpPW]-(g:Gene)<-[:UPREGULATES_CuG]-(c:Compound)<-[:INCLUDES_PCiC]-(pc:PharmacologicClass) RETURN pc.name
+What are the names of cellular components do genes participate in that are down regulated by compounds in the pharmacologic class photoabsorption? List the names of cellular components.;MATCH (pc:PharmacologicClass {name: "Photoabsorption"})-[:INCLUDES_PCiC]->(c:Compound)-[:DOWNREGULATES_CdG]->(g:Gene)-[:PARTICIPATES_GpCC]->(cc:CellularComponent) RETURN cc.name
+Which symptoms are presented by diseases treated by compounds from the pharmacologic class general anesthesia? List the names of symptoms.;MATCH (pc:PharmacologicClass {name: "General Anesthesia"})-[:INCLUDES_PCiC]->(c:Compound)-[:TREATS_CtD]->(d:Disease)-[:PRESENTS_DpS]->(s:Symptom) RETURN s.name
+What pharmacologic classes include compounds that treat diseases presenting the symptom 'Body Weight'? List the names of pharmacologic classes.;MATCH (s:Symptom {name: "Body Weight"})<-[:PRESENTS_DpS]-(d:Disease)<-[:TREATS_CtD]-(c:Compound)<-[:INCLUDES_PCiC]-(pc:PharmacologicClass) RETURN pc.name
+What symptoms are presented by diseases that are associated with the gene named CFTR and which anatomical locations are localized by these diseases? List the names of diseases, symptoms, and anatomies.;MATCH (g:Gene {name: 'CFTR'})<-[:ASSOCIATES_DaG]-(d:Disease)-[:PRESENTS_DpS]->(s:Symptom), (d)-[:LOCALIZES_DlA]->(a:Anatomy) RETURN d.name, s.name, a.name
+How many distinct pharmacologic classes include compounds that bind to genes associated with Lung Cancer?;MATCH (pc:PharmacologicClass)-[:INCLUDES_PCiC]->(c:Compound)-[:BINDS_CbG]->(g:Gene)<-[:ASSOCIATES_DaG]-(d:Disease {name: 'Cancer'}) RETURN COUNT(DISTINCT pc)
+Which diseases are linked to compounds included in the pharmacologic class 'Oxazolidinones' through gene regulation relationships? Provide the disease and compound names.;MATCH (d:Disease)-[:ASSOCIATES_DaG]->(g1:Gene)-[:REGULATES_GrG]->(g2:Gene)<-[:UPREGULATES_CuG]-(c:Compound)<-[:INCLUDES_PCiC]-(:PharmacologicClass {name: 'Oxazolidinones'}) RETURN d.name, c.name
+How many distinct genes associated with diseases participate in pathways containing 'Signaling Pathway' in their names and regulate other genes?;MATCH (d:Disease)-[:ASSOCIATES_DaG]->(g1:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway), (g1)-[:REGULATES_GrG]->(g2:Gene) WHERE pw.name CONTAINS 'Signaling Pathway' RETURN COUNT(DISTINCT(g1))
+Retrieve the names of genes that participate in the biological processes 'protein maturation' and 'osteoblast development', along with the names of pathways they are associated with.;MATCH (bp1:BiologicalProcess {name: 'protein maturation'})<-[:PARTICIPATES_GpBP]-(g:Gene)-[:PARTICIPATES_GpBP]->(bp2:BiologicalProcess {name: 'osteoblast development'}) MATCH (g)-[:PARTICIPATES_GpPW]->(pw:Pathway) RETURN g.name, pw.name
+Which compounds bind to genes linked to diseases presenting symptoms with 'Fever' in their names? Provide the compound and gene names.;MATCH (c:Compound)-[:BINDS_CbG]->(g:Gene)<-[:ASSOCIATES_DaG]-(d:Disease)-[:PRESENTS_DpS]->(s:Symptom) WHERE s.name contains 'Fever' RETURN c.name, g.name
+What are the names of compounds in the pharmacologic class 'Oxazolidinones' that upregulate genes participating in the biological process 'regulation of RNA stability'?;MATCH (pc:PharmacologicClass {name: 'Oxazolidinones'})-[:INCLUDES_PCiC]->(c:Compound)-[:UPREGULATES_CuG]->(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess {name: 'regulation of RNA stability'}) RETURN c.name
